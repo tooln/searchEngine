@@ -1,4 +1,5 @@
-html {
+/* Global Styles */
+body, html {
   margin: 0;
   padding: 0;
   height: 100%;
@@ -7,6 +8,7 @@ html {
   color: #0f0;
 }
 
+/* Flexbox Centering for the Content */
 .container {
   display: flex;
   flex-direction: column;
@@ -19,20 +21,23 @@ html {
   text-align: center;
 }
 
-h1,
-h2 {
+/* Headings */
+h1, h2 {
   margin: 0 0 20px;
   padding: 0;
+  text-shadow: 2px 2px 4px rgba(0, 255, 0, 0.6); /* Slight glowing effect */
 }
 
 h1 {
   font-size: 2.5em;
+  color: #00ff00; /* Slightly brighter color for emphasis */
 }
 
 h2 {
   font-size: 1.5em;
 }
 
+/* Input Field */
 input[type='text'] {
   width: 80%;
   padding: 12px 20px;
@@ -41,8 +46,18 @@ input[type='text'] {
   background-color: #333;
   border: 1px solid #0f0;
   border-radius: 4px;
+  color: #fff;
+  font-size: 1em;
+  transition: all 0.3s ease;
 }
 
+input[type='text']:focus {
+  border-color: #008080;
+  background-color: #444;
+  outline: none; /* Remove default focus outline */
+}
+
+/* Button */
 button.futuristic-button {
   background-color: #005555;
   border: none;
@@ -55,13 +70,20 @@ button.futuristic-button {
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 5px;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 button.futuristic-button:hover {
   background-color: #008080;
+  transform: translateY(-2px); /* Subtle lift effect */
 }
 
+button.futuristic-button:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.8); /* Add a glowing border effect on focus */
+}
+
+/* Video Background */
 .background-video {
   position: fixed;
   right: 0;
@@ -71,13 +93,42 @@ button.futuristic-button:hover {
   width: auto;
   height: auto;
   z-index: -100;
-  background: url('your-background-video-or-image.jpg') no-repeat;
+  background: url('your-background-video-or-image.jpg') no-repeat center center fixed;
   background-size: cover;
+  object-fit: cover; /* Ensure the video fills the screen without distortion */
 }
 
+/* Accessibility Improvements */
+button.futuristic-button[aria-label] {
+  cursor: pointer;
+}
+
+/* Media Query for Responsiveness */
 @media (max-width: 768px) {
+  .container {
+    width: 90%;
+  }
+
   input[type='text'],
   button.futuristic-button {
     width: 90%;
   }
+
+  h1 {
+    font-size: 2em; /* Reduce font size on smaller screens */
+  }
+
+  h2 {
+    font-size: 1.2em;
+  }
 }
+
+/* Fallback styles for when video is unavailable */
+@media (prefers-reduced-motion) {
+  .background-video {
+    background: url('your-background-image.jpg') no-repeat center center fixed;
+    background-size: cover;
+    display: block; /* Show static background */
+  }
+}
+
